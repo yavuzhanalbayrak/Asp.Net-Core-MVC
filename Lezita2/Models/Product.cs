@@ -2,7 +2,7 @@
 {
     public class Product
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public static int Count { get; private set; } = 0;
         public string? Name { get; set; }
         public string? Description { get; set; }

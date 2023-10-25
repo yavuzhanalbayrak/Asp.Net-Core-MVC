@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Product
+<!DOCTYPE html>
 <html style="font-size: 16px;" lang="tr"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -26,7 +27,7 @@
             <div class="u-carousel u-gallery u-layout-thumbnails u-lightbox u-no-transition u-product-control u-product-zoom u-show-text-none u-thumbnails-position-bottom u-gallery-1" data-interval="5000" data-u-ride="carousel" id="carousel-0028">
               <div class="u-carousel-inner u-gallery-inner" role="listbox"><div class="u-carousel-item u-gallery-item u-active">
                   <div class="u-back-slide">
-                    <img class="u-back-image u-expanded u-image-contain" src="~/images/069e6b0718b8820112f9990ff92c82f4ec34c285a8e577830b1e8d5df6b4d42e0e74911236df9cca393bd68c0f4e18aff261d9ff98b9f959a0a010_1280.jpg">
+                                    <img class="u-back-image u-expanded u-image-contain" src=@Model.Image />
                   </div>
                   <div class="u-over-slide u-over-slide-1">
                     <h3 class="u-gallery-heading">Sample Title</h3>
@@ -34,7 +35,7 @@
                   </div>
                 </div><div class="u-carousel-item u-gallery-item">
                   <div class="u-back-slide">
-                    <img class="u-back-image u-expanded u-image-contain" src="~/images/414330ad.svg">
+                                    <img class="u-back-image u-expanded u-image-contain" src=@Model.Image>
                   </div>
                   <div class="u-over-slide u-over-slide-1">
                     <h3 class="u-gallery-heading">Sample Title</h3>
@@ -42,7 +43,7 @@
                   </div>
                 </div><div class="u-carousel-item u-gallery-item">
                   <div class="u-back-slide">
-                    <img class="u-back-image u-expanded u-image-contain" src="~/images/d754debf.svg">
+                                    <img class="u-back-image u-expanded u-image-contain" src=@Model.Image>
                   </div>
                   <div class="u-over-slide u-over-slide-1">
                     <h3 class="u-gallery-heading">Sample Title</h3>
@@ -74,15 +75,18 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
                 </span>
               </a>
               <ol class="u-carousel-thumbnails u-spacing-3 u-carousel-thumbnails-1"><li class="u-carousel-thumbnail u-carousel-thumbnail-1 u-active" data-u-target="#carousel-0028" data-u-slide-to="0">
-                  <img class="u-carousel-thumbnail-image u-image" src="/images/069e6b0718b8820112f9990ff92c82f4ec34c285a8e577830b1e8d5df6b4d42e0e74911236df9cca393bd68c0f4e18aff261d9ff98b9f959a0a010_1280.jpg">
+                  <img class="u-carousel-thumbnail-image u-image" src=@Model.Image>
                 </li><li class="u-carousel-thumbnail u-carousel-thumbnail-1" data-u-target="#carousel-0028" data-u-slide-to="1">
                   <img class="u-carousel-thumbnail-image u-image" src="/images/414330ad.svg">
                 </li><li class="u-carousel-thumbnail u-carousel-thumbnail-1" data-u-target="#carousel-0028" data-u-slide-to="2">
                   <img class="u-carousel-thumbnail-image u-image" src="/images/d754debf.svg">
-                </li></ol>
+                </li>
+              </ol>
             </div><!--/product_gallery--><!--product_title-->
-            <h2 class="u-align-left u-custom-font u-font-merriweather u-product-control u-text u-text-1">Orman Meyveli Krep</h2><!--/product_title--><!--product_content-->
-            <div class="u-align-left u-product-control u-product-desc u-text u-text-2">Örnek metin. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</div><!--/product_content-->
+            <h2 class="u-align-left u-custom-font u-font-merriweather u-product-control u-text u-text-1">@Model.Name</h2><!--/product_title--><!--product_content-->
+            <div class="u-align-left u-product-control u-product-desc u-text u-text-2">
+                @Model.Description
+            </div><!--/product_content-->
           </div>
         </div><!--/product_item--><!--/product-->
       </div>

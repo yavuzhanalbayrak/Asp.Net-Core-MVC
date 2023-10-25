@@ -18,7 +18,10 @@ namespace Lezita2.Models
             {
                 new Category(){Name="SOĞUK İÇECEKLER",Image="/images/Sogukicecek.jpg"  },
                 new Category(){Name="SICAK İÇECEKLER",Image="/images/Coffee.jpg"  },
-                new Category(){Name="BURGERLER",Image="/images/Burger.jpg"  }
+                new Category(){Name="BURGERLER",Image="/images/Burger.jpg"  },
+                new Category(){Name="KURABİYELER",Image="/images/Burger.jpg"  },
+                new Category(){Name="BURGERLER",Image="/images/Burger.jpg"  },
+                new Category(){Name="BURGERLER",Image="/images/Burger.jpg"  },
             };
         }
     }
