@@ -24,7 +24,7 @@
     <section class="u-clearfix u-image u-section-1" id="sec-3bac" data-image-width="1280" data-image-height="960">
         <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-align-center u-custom-font u-font-merriweather u-text u-text-body-alt-color u-text-default u-text-1">
-                Kategori Adı<span style="font-style: italic;"></span>
+                @ViewBag.CategoryName<span style="font-style: italic;"></span>
             </h2>
         </div>
     </section>
@@ -34,35 +34,35 @@
             
             <div class="u-expanded-width u-products u-products-1" data-site-sorting-prop="created" data-site-sorting-order="desc" data-products-datasource="site" data-items-per-page="4" data-site-category="1" data-products-id="1">
                 <div class="u-repeater u-repeater-1">
-                @foreach (var product in Model)
-            {
+                    @foreach (var product in Model)
+                    {
                  
-                        <!--product_item-->
-                        <div class="u-align-center u-container-style u-products-item u-repeater-item" data-product-id="6">
-                            <div class="u-container-layout u-similar-container u-container-layout-4 ">
-                                <!--product_image-->
-                                <span class="u-product-title-link" href="/products/orman-meyveli-krep.html">
-                                    <img alt="" class="u-expanded-width u-image u-image-contain u-image-default u-product-control u-image-4" src=@product.Image>
-                                </span>
-                                    <img src="/images/414330ad.svg" class="u-product-second-image"><!--/product_image--><!--product_title-->
-                                <h4 class="u-align-center u-product-control u-text u-text-7">
-                                    <a class="u-product-title-link" href="/products/orman-meyveli-krep.html">@product.Name</a>
-                                </h4><!--/product_title-->
-                                <p class="u-text u-text-default u-text-8">
-                                    @product.Description
-                                </p><!--product_button--><!--options_json--><!--{"clickType":"go-to-page","content":"View"}--><!--/options_json-->
-                                <a asp-action="Index" asp-controller="Inspect" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-4" data-product-button-click-type="go-to-page"><!--product_button_content-->İncele<!--/product_button_content--></a><!--/product_button-->
+                                <!--product_item-->
+                                <div class="u-align-center u-container-style u-products-item u-repeater-item" data-product-id="6">
+                                    <div class="u-container-layout u-similar-container u-container-layout-4 ">
+                                        <!--product_image-->
+                                        <span class="u-product-title-link" href="/products/orman-meyveli-krep.html">
+                                            <img alt="" class="u-expanded-width u-image u-image-contain u-image-default u-product-control u-image-4" src=@product.Image>
+                                        </span>
+                                            <img src="/images/414330ad.svg" class="u-product-second-image"><!--/product_image--><!--product_title-->
+                                        <h4 class="u-align-center u-product-control u-text u-text-7">
+                                            <a class="u-product-title-link" href="/products/orman-meyveli-krep.html">@product.Name</a>
+                                        </h4><!--/product_title-->
+                                        <p class="u-text u-text-default u-text-8">
+                                            @product.Description
+                                        </p><!--product_button--><!--options_json--><!--{"clickType":"go-to-page","content":"View"}--><!--/options_json-->
+                                        <a asp-action="Index" asp-controller="Inspect" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-4" data-product-button-click-type="go-to-page"><!--product_button_content-->İncele<!--/product_button_content--></a><!--/product_button-->
 
-                            </div>
-                        </div><!--/product_item--><!--product_item-->
-                        <!--/product_item--><!--product_item-->
-                        <!--/product_item--><!--product_item-->
-                        <!--/product_item-->
+                                    </div>
+                                </div><!--/product_item--><!--product_item-->
+                                <!--/product_item--><!--product_item-->
+                                <!--/product_item--><!--product_item-->
+                                <!--/product_item-->
                    
                 
 
-                <!--/products-->
-            }
+                        <!--/products-->
+                    }
                 </div>
             </div>
 
