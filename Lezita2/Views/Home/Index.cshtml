@@ -16,85 +16,52 @@
     </div>
 </section>
 @{
-    string bg1="";
-    string bg2="";
-    string bg3="";
-    string b1="";
-    string b2="";
-    string b3="";
-}
-@if (ViewBag.CategoriesCount == 3)
-{
-     bg1 = Model[0].BackGroundImage;
-     bg2 = Model[1].BackGroundImage;
-     bg3 = Model[2].BackGroundImage;
-     b1 = Model[0].Image;
-     b2 = Model[1].Image;
-     b3 = Model[2].Image;
-}
-else if (ViewBag.CategoriesCount == 2)
-{
-     bg1 = Model[0].BackGroundImage;
-     bg2 = Model[1].BackGroundImage;
-     bg3 = "";
-     b1 = Model[0].Image;
-     b2 = Model[1].Image;
-     b3 = "";
-}
-else if (ViewBag.CategoriesCount == 1)
-{
-     bg1 = Model[0].BackGroundImage;
-     bg2 = "";
-     bg3 = "";
-     b1 = Model[0].Image;
-     b2 = "";
-     b3 = "";
-}
-else if (ViewBag.CategoriesCount == 0)
-{
-     bg1 = "";
-     bg2 = "";
-     bg3 = "";
-     b1 = "";
-     b2 = "";
-     b3 = "";
-}
-else
-{
-    bg1 = Model[0].BackGroundImage;
-    bg2 = Model[1].BackGroundImage;
-    bg3 = Model[2].BackGroundImage;
-    b1 = Model[0].Image;
-    b2 = Model[1].Image;
-    b3 = Model[2].Image;
-}
+
+    List<string> bg_image = new List<string>();
+    List<string> image = new List<string>();
+    int count = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        bg_image.Add("");
+        image.Add(""); 
+
+    }
+ }
+ @if (Model is not null){
+    @foreach (var categories in Model)
+    {
+        bg_image[count] = categories.BackGroundImage;
+        image[count++] = categories.Image;
+    }
+
+ }
 
 <style>
     .bir_bg{
-        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg1");
+        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg_image[0]");
         
     }
     .iki_bg{
-        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg2");
+        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg_image[1]");
     
     }
     .uc_bg{
-        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg3");
+        background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("@bg_image[2]");
     
     }
 
     .bir{
-        background-image: url("@b1");
+        background-image: url("@image[0]");
     
     }
 
     .iki{
-        background-image: url("@b2");
+        background-image: url("@image[1]");
     
     }
 
     .uc {
-        background-image: url("@b3");
+        background-image: url("@image[2]");
     }
 
 </style>

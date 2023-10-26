@@ -20,9 +20,13 @@
                     <th scope="row">@count</th>
                     <td>@category.Id</td>
                     <td>@category.Name</td>
-                    <td>
-                        <a asp-controller="Admin" asp-action="UpdateCategories" asp-route-id="1" class="btn btn-success">Güncelle</a>
-                        <a asp-controller="Admin" asp-action="DeleteCategories" asp-route-id="1" class="btn btn-danger">Sil</a>
+                    <td class="row">
+                        <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id >
+                            <button class="btn btn-success">Güncelle</button
+                        </form>
+                        <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id >
+                            <button class="btn btn-danger">Sil</button
+                        </form>
                     </td>
                 </tr>
 

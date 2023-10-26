@@ -49,6 +49,13 @@ namespace Lezita2.Controllers
             _context.SaveChanges();
             return RedirectToAction("GetCategories");
         }
-
+        [HttpPost]
+        public IActionResult DeleteCategories(int id)
+        {
+            var category=_context.Categories.FirstOrDefault(c => c.Id == id);
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+            return RedirectToAction("GetCategories");
+        }
     }
 }
