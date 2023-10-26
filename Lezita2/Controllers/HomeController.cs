@@ -15,6 +15,21 @@ namespace Lezita2.Controllers
 
         public IActionResult Index()
         {
+            var categoriesCount = DbList.categories.Count();
+           
+            if (categoriesCount>3)
+            {
+                ViewBag.CategoriesCount = 3;
+                var categories = DbList.categories.Take(3).ToList();
+                return View(categories);
+            }
+            else if (categoriesCount>0)
+            {
+                ViewBag.CategoriesCount = categoriesCount;
+                var categories = DbList.categories;
+                return View(categories);
+            }
+            ViewBag.CategoriesCount = categoriesCount;
             return View();
         }
        
