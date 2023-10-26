@@ -1,8 +1,6 @@
 ﻿using Lezita2.Context;
 using Lezita2.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Lezita2.Controllers
 {
@@ -17,8 +15,8 @@ namespace Lezita2.Controllers
         {
             ViewBag.Categories = _context.Categories.ToList();
             var products = _context.Products.ToList();
-            if(products is null) return View();
-            
+            if (products is null) return View();
+
             return View(products);
         }
         [HttpGet]
@@ -51,7 +49,7 @@ namespace Lezita2.Controllers
                 await formProduct.Image.CopyToAsync(stream);
             }
             //Nesne oluşturulup değerler atandı.
-            Product product=new Product();
+            Product product = new Product();
             product.Name = formProduct.Name;
             product.Description = formProduct.Description;
             product.CategoryId = formProduct.CategoryId;
@@ -74,12 +72,39 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddCategories(Category category)
+        public async Task<IActionResult> AddCategories(AddCategoryImage formCategory)
         {
             if (!ModelState.IsValid)
             {
-                return View(category);
+                return View(formCategory);
             }
+            var dictionary = "images";
+            // Uzantıyı al (örneğin ".jpg")
+            var fileExtension1 = Path.GetExtension(formCategory.Image.FileName);
+            var fileExtension2 = Path.GetExtension(formCategory.BackGroundImage.FileName);
+
+            // Özgün bir dosya adı oluştur (guid + uzantı)
+            var filename1 = $"{Guid.NewGuid()}{fileExtension1}";
+            var filename2 = $"{Guid.NewGuid()}{fileExtension2}";
+
+            // Dosyanın kaydedileceği tam yolu oluştur
+            var path1 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dictionary, filename1);
+            var path2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dictionary, filename2);
+
+            // Dosyayı belirlenen yola kaydet
+            using (var stream = new FileStream(path1, FileMode.Create))
+            {
+                await formCategory.Image.CopyToAsync(stream);
+            }
+            using (var stream = new FileStream(path2, FileMode.Create))
+            {
+                await formCategory.BackGroundImage.CopyToAsync(stream);
+            }
+
+            Category category = new Category();
+            category.Name = formCategory.Name;
+            category.Image = $"/{dictionary}/{filename1}";
+            category.BackGroundImage = $"/{dictionary}/{filename2}";
             _context.Categories.Add(category);
             _context.SaveChanges();
             return RedirectToAction("GetCategories");
@@ -88,18 +113,18 @@ namespace Lezita2.Controllers
         public IActionResult DeleteProducts(int id)
         {
             var product = _context.Products.FirstOrDefault(c => c.Id == id);
-            if(product is not null) 
+            if (product is not null)
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
             }
-            
+
             return RedirectToAction("GetProducts");
         }
         [HttpPost]
         public IActionResult DeleteCategories(int id)
         {
-            var category=_context.Categories.FirstOrDefault(c => c.Id == id);
+            var category = _context.Categories.FirstOrDefault(c => c.Id == id);
             if (category is not null)
             {
                 var products = _context.Products.Where(c => c.CategoryId == id).ToList();
@@ -113,7 +138,7 @@ namespace Lezita2.Controllers
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }
-            
+
             return RedirectToAction("GetCategories");
         }
     }

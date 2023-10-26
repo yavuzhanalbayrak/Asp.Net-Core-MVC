@@ -2,7 +2,7 @@
 
 namespace Lezita2.Models.Validators
 {
-    public class CategoryValidation:AbstractValidator<Category>
+    public class CategoryValidation:AbstractValidator<AddCategoryImage>
     {
         public CategoryValidation()
         { 

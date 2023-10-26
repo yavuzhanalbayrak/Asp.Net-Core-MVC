@@ -12,7 +12,7 @@ namespace Lezita2.Controllers
             var category = _context.Categories.FirstOrDefault(x=>x.Id==id);
             if (category is null) 
                 return RedirectToAction("Index", "Category");
-            ViewBag.CategoryName = category.Name;
+            ViewBag.Category = category;
             var producs = _context.Products.Where(x => x.CategoryId == id);
             return View(producs);
         }

@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Product>
+
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="tr">
 <head>
@@ -20,11 +23,19 @@
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
 </head>
+
 <body data-path-to-root="/" class="u-body u-overlap u-xl-mode" data-lang="tr">
+
+    
+     <style>
+    .u-section-1 {
+            background-image: url("@ViewBag.Category.Image");
+    }
+    </style> 
     <section class="u-clearfix u-image u-section-1" id="sec-3bac" data-image-width="1280" data-image-height="960">
         <div class="u-clearfix u-sheet u-sheet-1">
             <h2 class="u-align-center u-custom-font u-font-merriweather u-text u-text-body-alt-color u-text-default u-text-1">
-                @ViewBag.CategoryName<span style="font-style: italic;"></span>
+                @ViewBag.Category.Name<span style="font-style: italic;"></span>
             </h2>
         </div>
     </section>
