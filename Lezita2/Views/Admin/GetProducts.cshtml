@@ -1,42 +1,78 @@
 ﻿@model List<Product>
-<div class="container">
-    <table class="table table-striped ">
-        <thead>
-            <tr class="text-center">
-                <th scope="col">#</th>
-                <th scope="col">ÜRÜN ID</th>
-                <th scope="col">ÜRÜN ADI</th>
-                <th scope="col">KATEGORİ</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @{
-                List<Category> categories = ViewBag.Categories;
-                int count = 0;
-            }
-                @foreach (var product in Model)
-                {
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="tr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="INTUITIVE">
+    <meta name="description" content="">
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="~/css/Kategoriler.css" media="screen">
+    <meta name="generator" content="Nicepage 5.19.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i">
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Kategoriler">
+    <meta property="og:type" content="website">
+    <meta data-intl-tel-input-cdn-path="intlTelInput/">
+</head>
+<body data-path-to-root="/" class="u-body u-xl-mode" data-lang="tr">
+
+    <div class="container">
+        <table class="table table-striped ">
+            <thead>
                 <tr class="text-center">
-                    <th scope="row">@count</th>
-                    <td>@product.Id</td>
-                    <td>@product.Name</td>
-                    <td>@categories.FirstOrDefault(x=>x.Id==product.CategoryId).Name</td>
-                    <td>
-                        <a asp-controller="Admin" asp-action="UpdateProduct" asp-route-id="1" class="btn btn-success">Güncelle</a>
-                        <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="1" class="btn btn-danger">Sil</a>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">ÜRÜN ID</th>
+                    <th scope="col">ÜRÜN ADI</th>
+                    <th scope="col">KATEGORİ</th>
+                    <th scope="col"></th>
                 </tr>
-                
-                    count++;
-                
+            </thead>
+            <tbody>
+
+                @{
+
+                    List<Category> categories = ViewBag.Categories;
+                    int count = 0;
+                    foreach (var product in Model)
+                    {
+                        string categoryName = "";
+                        if (categories.FirstOrDefault(x => x.Id == product.CategoryId) is not null)
+                            categoryName = categories.FirstOrDefault(x => x.Id == product.CategoryId).Name;
+                        
+                        
+                        <tr class="text-center">
+                            <th scope="row">@count</th>
+                            <td>@product.Id</td>
+                            <td>@product.Name</td>
+                            <td>@categoryName</td>
+                            <td class="row">
+                                <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateProducts" asp-route-id=@product.Id >
+                                    <button class="btn btn-success">Güncelle</button>
+                                </form>
+                                <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteProducts" asp-route-id=@product.Id >
+                                    <button class="btn btn-danger">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        count++;
+
+                    }
                 }
-            
+                
+                
 
-        </tbody>
-    </table>
-    <a asp-controller="Admin" asp-action="AddProducts" class="btn btn-primary">Ekle</a>
-    <a asp-controller="Admin" asp-action="Index" class="btn btn-danger">Geri</a>
 
-</div>
+            </tbody>
+        </table>
+        <a asp-controller="Admin" asp-action="AddProducts" class="btn btn-primary">Ekle</a>
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-danger">Geri</a>
+
+    </div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 ﻿using Lezita2.Context;
 using Lezita2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Lezita2.Controllers
@@ -16,6 +17,8 @@ namespace Lezita2.Controllers
         {
             ViewBag.Categories = _context.Categories.ToList();
             var products = _context.Products.ToList();
+            if(products is null) return View();
+            
             return View(products);
         }
         [HttpGet]
@@ -43,6 +46,18 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult DeleteProducts(int id)
+        {
+            var product = _context.Products.FirstOrDefault(c => c.Id == id);
+            if(product is not null) 
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
+            
+            return RedirectToAction("GetProducts");
+        }
+        [HttpPost]
         public IActionResult AddCategories(Category category)
         {
             _context.Categories.Add(category);
@@ -53,8 +68,20 @@ namespace Lezita2.Controllers
         public IActionResult DeleteCategories(int id)
         {
             var category=_context.Categories.FirstOrDefault(c => c.Id == id);
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            if (category is not null)
+            {
+                var products = _context.Products.Where(c => c.CategoryId == id).ToList();
+                if (products.Any())
+                {
+                    foreach (var product in products)
+                    {
+                        _context.Products.Remove(product);
+                    }
+                }
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+            }
+            
             return RedirectToAction("GetCategories");
         }
     }
