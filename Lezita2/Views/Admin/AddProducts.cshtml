@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model AddProductImage
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="tr">
 <head>
@@ -27,7 +27,7 @@
     <div class=" mt-5 row">
         <div class="col-4"></div>
         <div class="col-4">
-            <form asp-controller="Admin" asp-action="AddProducts" method="post">
+            <form asp-controller="Admin" asp-action="AddProducts" method="post" enctype="multipart/form-data">
                 <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label"><h5>Ürün Adı:</h5></label>
                     <input asp-for="Name" type="text" class="form-control" aria-describedby="emailHelp">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="mb-2">
                     <label for="exampleInputPassword1" class="form-label"><h5>Ürün Resmi:</h5></label>
-                    <input asp-for="Image" type="text" class="form-control" id="exampleInputPassword1">
+                    <input asp-for="Image" type="file" class="form-control" >
                     <span class="text-danger" asp-validation-for="Image"></span>
                 </div>
                 <div class="mb-2">

@@ -2,7 +2,7 @@
 
 namespace Lezita2.Models.Validators
 {
-    public class ProductValidation : AbstractValidator<Product>
+    public class ProductValidation : AbstractValidator<AddProductImage>
     {
         public ProductValidation()
         {

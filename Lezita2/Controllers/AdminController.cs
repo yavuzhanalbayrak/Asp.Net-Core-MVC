@@ -28,13 +28,36 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddProducts(Product product)
+        public async Task<IActionResult> AddProducts(AddProductImage formProduct)
         {
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = _context.Categories.ToList();
-                return View(product);
+                return View(formProduct);
             }
+            var dictionary = "images";
+            // Uzantıyı al (örneğin ".jpg")
+            var fileExtension = Path.GetExtension(formProduct.Image.FileName);
+
+            // Özgün bir dosya adı oluştur (guid + uzantı)
+            var filename = $"{Guid.NewGuid()}{fileExtension}";
+
+            // Dosyanın kaydedileceği tam yolu oluştur
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", dictionary, filename);
+
+            // Dosyayı belirlenen yola kaydet
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await formProduct.Image.CopyToAsync(stream);
+            }
+            //Nesne oluşturulup değerler atandı.
+            Product product=new Product();
+            product.Name = formProduct.Name;
+            product.Description = formProduct.Description;
+            product.CategoryId = formProduct.CategoryId;
+            //Fotoğrafın url'i eklendi
+            product.Image = $"/{dictionary}/{filename}";
+
             _context.Products.Add(product);
             _context.SaveChanges();
             return RedirectToAction("GetProducts");
