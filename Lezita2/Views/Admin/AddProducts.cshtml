@@ -17,6 +17,10 @@
     <meta property="og:title" content="Kategoriler">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body data-path-to-root="/" class="u-body u-xl-mode" data-lang="tr">
 
@@ -25,26 +29,30 @@
         <div class="col-4">
             <form asp-controller="Admin" asp-action="AddProducts" method="post">
                 <div class="mb-2">
-                    <label for="exampleInputEmail1" class="form-label">Ürün Adı:</label>
+                    <label for="exampleInputEmail1" class="form-label"><h5>Ürün Adı:</h5></label>
                     <input asp-for="Name" type="text" class="form-control" aria-describedby="emailHelp">
+                    <span class="text-danger" asp-validation-for="Name"></span>
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Ürün Açıklaması:</label>
-                    <input asp-for="Description" type="text" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Ürün Resmi:</label>
+                    <label for="exampleInputPassword1" class="form-label"><h5>Ürün Resmi:</h5></label>
                     <input asp-for="Image" type="text" class="form-control" id="exampleInputPassword1">
+                    <span class="text-danger" asp-validation-for="Image"></span>
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label"></label>
+                    <label for="exampleInputPassword1" class="form-label"><h5>Ürün Kategorisi:</h5></label>
                     <select asp-for="CategoryId" class="form-select" aria-label="Default select example">
-                        <option selected>Kategoriler</option>
+                        <option disabled selected>Kategoriler</option>
                         @foreach (var category in ViewBag.Categories)
                         {
                             <option value=@category.Id>@category.Name</option>
                         }
                     </select>
+                    <span class="text-danger" asp-validation-for="CategoryId"></span>
+                </div>
+                <div class="mb-2">
+                    <label for="exampleInputPassword1" class="form-label"><h5>Ürün Açıklaması:</h5></label>
+                    <textarea style="height:150px" asp-for="Description"  class="form-control" id="exampleInputPassword1"></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

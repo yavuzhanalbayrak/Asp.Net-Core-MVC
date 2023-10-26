@@ -30,6 +30,10 @@ namespace Lezita2.Controllers
         [HttpPost]
         public IActionResult AddProducts(Product product)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
             _context.Products.Add(product);
             _context.SaveChanges();
             return RedirectToAction("GetProducts");
