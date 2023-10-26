@@ -1,0 +1,40 @@
+﻿@model List<Product>
+<div class="container">
+    <table class="table table-striped ">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">ÜRÜN ID</th>
+                <th scope="col">ÜRÜN ADI</th>
+                <th scope="col">KATEGORİ</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @{
+                List<Category> categories = ViewBag.Categories;
+                int count = 0;
+            }
+                @foreach (var product in Model)
+                {
+                <tr class="text-center">
+                    <th scope="row">@count</th>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@categories.FirstOrDefault(x=>x.Id==product.CategoryId).Name</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="UpdateProduct" asp-route-id="1" class="btn btn-success">Güncelle</a>
+                        <a asp-controller="Admin" asp-action="DeleteProduct" asp-route-id="1" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+                
+                    count++;
+                
+                }
+            
+
+        </tbody>
+    </table>
+    <a asp-controller="Admin" asp-action="AddProducts" class="btn btn-primary">Ekle</a>
+</div>
