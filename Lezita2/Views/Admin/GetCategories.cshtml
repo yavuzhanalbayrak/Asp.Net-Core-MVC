@@ -1,0 +1,38 @@
+﻿@model List<Category>
+<div class="container">
+    <table class="table table-striped ">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">KATEGORİ ID</th>
+                <th scope="col">KATEGORİ ADI</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                int count = 0;
+            }
+            @foreach (var category in Model)
+            {
+                <tr class="text-center">
+                    <th scope="row">@count</th>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="UpdateCategories" asp-route-id="1" class="btn btn-success">Güncelle</a>
+                        <a asp-controller="Admin" asp-action="DeleteCategories" asp-route-id="1" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+
+                count++;
+
+            }
+
+
+        </tbody>
+    </table>
+    <a asp-controller="Admin" asp-action="AddCategories" class="btn btn-primary">Ekle</a>
+    <a asp-controller="Admin" asp-action="Index" class="btn btn-danger">Geri</a>
+</div>

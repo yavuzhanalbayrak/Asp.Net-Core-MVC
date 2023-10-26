@@ -1,0 +1,24 @@
+﻿@model Category
+<div class=" mt-5 row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form asp-controller="Admin" asp-action="AddCategories" method="post">
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Kategori Adı:</label>
+                <input asp-for="Name" type="text" class="form-control" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="form-label">Kategori Resmi:</label>
+                <input asp-for="Image" type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="form-label">Kategori Arkaplan Resmi:</label>
+                <input asp-for="BackGroundImage" type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-4"></div>
+
+
+</div>
