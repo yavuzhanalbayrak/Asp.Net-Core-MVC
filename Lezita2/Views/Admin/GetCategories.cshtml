@@ -43,10 +43,10 @@
                     <td>@category.Name</td>
                     <td class="row">
                         <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id >
-                            <button class="btn btn-success">Güncelle</button
+                            <button class="btn btn-success">Güncelle</button>
                         </form>
                         <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id >
-                            <button class="btn btn-danger">Sil</button
+                            <button class="btn btn-danger">Sil</button>
                         </form>
                     </td>
                 </tr>
@@ -59,7 +59,7 @@
         </tbody>
     </table>
     <a asp-controller="Admin" asp-action="AddCategories" class="btn btn-primary">Ekle</a>
-    <a asp-controller="Admin" asp-action="Index" class="btn btn-danger">Geri</a>
+    <a asp-controller="Admin" asp-action="Index" class="btn btn-secondary">Geri</a>
 </div>
 
 </body>

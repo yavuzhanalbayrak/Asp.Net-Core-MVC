@@ -32,6 +32,7 @@ namespace Lezita2.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Categories = _context.Categories.ToList();
                 return View(product);
             }
             _context.Products.Add(product);
@@ -50,6 +51,17 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
+        public IActionResult AddCategories(Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+            return RedirectToAction("GetCategories");
+        }
+        [HttpPost]
         public IActionResult DeleteProducts(int id)
         {
             var product = _context.Products.FirstOrDefault(c => c.Id == id);
@@ -60,13 +72,6 @@ namespace Lezita2.Controllers
             }
             
             return RedirectToAction("GetProducts");
-        }
-        [HttpPost]
-        public IActionResult AddCategories(Category category)
-        {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
-            return RedirectToAction("GetCategories");
         }
         [HttpPost]
         public IActionResult DeleteCategories(int id)

@@ -17,6 +17,10 @@
     <meta property="og:title" content="Kategoriler">
     <meta property="og:type" content="website">
     <meta data-intl-tel-input-cdn-path="intlTelInput/">
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body data-path-to-root="/" class="u-body u-xl-mode" data-lang="tr">
    
@@ -25,18 +29,24 @@
         <div class="col-4">
             <form asp-controller="Admin" asp-action="AddCategories" method="post">
                 <div class="mb-2">
-                    <label for="exampleInputEmail1" class="form-label">Kategori Adı:</label>
+                    <label for="exampleInputEmail1" class="form-label"><h5>Kategori Adı:</h5></label>
                     <input asp-for="Name" type="text" class="form-control" aria-describedby="emailHelp">
+                    <span class="text-danger" asp-validation-for="Name"></span>
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Kategori Resmi:</label>
+                    <label for="exampleInputPassword1" class="form-label"><h5>Kategori Resmi:</h5></label>
                     <input asp-for="Image" type="text" class="form-control" id="exampleInputPassword1">
+                    <span class="text-danger" asp-validation-for="Image"></span>
+
                 </div>
                 <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Kategori Arkaplan Resmi:</label>
+                    <label for="exampleInputPassword1" class="form-label"><h5>Kategori Arkaplan Resmi:</h5></label>
                     <input asp-for="BackGroundImage" type="text" class="form-control" id="exampleInputPassword1">
+                    <span class="text-danger" asp-validation-for="BackGroundImage"></span>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a asp-controller="Admin" asp-action="GetCategories" class="btn btn-secondary">Geri</a>
+
             </form>
         </div>
         <div class="col-4"></div>

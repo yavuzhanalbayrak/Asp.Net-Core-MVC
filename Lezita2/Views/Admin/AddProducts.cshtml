@@ -20,7 +20,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> 
 </head>
 <body data-path-to-root="/" class="u-body u-xl-mode" data-lang="tr">
 
@@ -54,7 +54,8 @@
                     <textarea style="height:150px" asp-for="Description"  class="form-control" id="exampleInputPassword1"></textarea>
                     <span class="text-danger" asp-validation-for="Description"></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Ekle</button>
+                <a asp-controller="Admin" asp-action="GetProducts"class="btn btn-secondary">Geri</a>
             </form>
         </div>
         <div class="col-4"></div>
