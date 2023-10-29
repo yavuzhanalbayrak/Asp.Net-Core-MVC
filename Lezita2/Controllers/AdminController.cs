@@ -14,15 +14,6 @@ namespace Lezita2.Controllers
         {
             _hostingEnvironment = hostingEnvironment;
         }
-        //private void DeleteImage(string imagePath)
-        //{
-        //    // Eğer product.Image, tam bir yol değilse, uygulamanızın wwwroot klasörüyle birleştirin.(dosya "/" ile başlamamalı. )
-        //    var photoPath = Path.Combine(_hostingEnvironment.WebRootPath, imagePath);
-        //    // Dosyanın var olup olmadığını kontrol edin ve silin
-        //    if (System.IO.File.Exists(photoPath))
-        //        System.IO.File.Delete(photoPath);
-            
-        //}
         private void DeleteImage(string imagePath,string bg_imagePath)
         {
             // Eğer product.Image, tam bir yol değilse, uygulamanızın wwwroot klasörüyle birleştirin.(dosya "/" ile başlamamalı. )
@@ -96,6 +87,7 @@ namespace Lezita2.Controllers
                 Description = product.Description,
 
             };
+            TempData["OldProductImage"] = product.Image;
             return View(addProductImage);
         }
         [HttpPost]
@@ -108,6 +100,7 @@ namespace Lezita2.Controllers
             }
             Product product = _context.Products.Find(formProduct.Id);
             formProduct.AddImageAsync(product);
+            DeleteImage(TempData["OldProductImage"].ToString().TrimStart('/'),"");
             _context.SaveChanges();
             return RedirectToAction("GetProducts");
         }
@@ -158,9 +151,31 @@ namespace Lezita2.Controllers
             return RedirectToAction("GetCategories");
         }
         [HttpGet]
-        public IActionResult UpdateCategories()
+        public IActionResult UpdateCategories(int id)
         {
-            return View();
+            var category = _context.Categories.Find(id);
+            AddCategoryImage addCategoryImage = new()
+            {
+                Id = category.Id,
+                Name = category.Name,
+
+            };
+            TempData["OldCategoryImage"] = category.Image;
+            TempData["OldCategoryBgImage"] = category.BackGroundImage;
+            return View(addCategoryImage);
+        }
+        public async Task<IActionResult> UpdateCategoriesAsync(AddCategoryImage formCategory)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = _context.Categories.ToList();
+                return View(formCategory);
+            }
+            Category category = _context.Categories.Find(formCategory.Id);
+            formCategory.AddImageAsync(category);
+            DeleteImage(TempData["OldCategoryImage"].ToString().TrimStart('/'), TempData["OldCategoryBgImage"].ToString().TrimStart('/'));
+            _context.SaveChanges();
+            return RedirectToAction("GetCategories");
         }
     }
 }
