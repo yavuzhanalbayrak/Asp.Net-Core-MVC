@@ -50,10 +50,10 @@
                             <td>@product.Name</td>
                             <td>@categoryName</td>
                             <td class="row">
-                                <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateProducts" asp-route-id=@product.Id >
+                                <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateProducts" asp-route-id=@product.Id method="get">
                                     <button class="btn btn-success">Güncelle</button>
                                 </form>
-                                <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteProducts" asp-route-id=@product.Id >
+                                <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteProducts" asp-route-id=@product.Id method="post">
                                     <button class="btn btn-danger">Sil</button>
                                 </form>
                             </td>

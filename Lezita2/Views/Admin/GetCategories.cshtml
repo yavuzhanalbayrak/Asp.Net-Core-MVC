@@ -42,10 +42,10 @@
                     <td>@category.Id</td>
                     <td>@category.Name</td>
                     <td class="row">
-                        <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id >
+                        <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id method="get">
                             <button class="btn btn-success">Güncelle</button>
                         </form>
-                        <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id >
+                        <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id method="post">
                             <button class="btn btn-danger">Sil</button>
                         </form>
                     </td>
