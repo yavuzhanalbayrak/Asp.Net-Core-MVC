@@ -18,7 +18,18 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Urun">
     <meta property="og:type" content="website">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <meta data-intl-tel-input-cdn-path="intlTelInput/">
+<style>
+        .my_button{
+            border:solid;border-width:2px;
+            background-color:white;border-color:rgb(33,37,41)
+        }
+    .my_button:hover{
+            background-color: rgb(33,37,41);
+            color:white;
+    }
+</style>
+</head>
   <body data-path-to-root="/" class="u-body u-xl-mode" data-lang="tr">
     <section class="u-align-center u-clearfix u-section-1" id="sec-08b1">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-valign-middle-xs u-sheet-1"><!--product--><!--product_options_json--><!--{"source":""}--><!--/product_options_json--><!--product_item-->
@@ -84,13 +95,19 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
               </ol>
             </div><!--/product_gallery--><!--product_title-->
             <h2 class="u-align-left u-custom-font u-font-merriweather u-product-control u-text u-text-1">@Model.Name</h2><!--/product_title--><!--product_content-->
+                    <div class="u-align-left u-product-control u-product-desc u-text u-text-2 u-text-palette-2-base" style="font-size: 1.875rem; font-weight: 700;">
+                        $17
+                    </div><!--/product_regular_price-->
             <div class="u-align-left u-product-control u-product-desc u-text u-text-2">
                 @Model.Description
             </div><!--/product_content-->
+                    
+                    <div class="u-align-left u-product-control u-product-desc u-text u-text-2 ">
+                        <button class="p-2 ps-4 pe-4 my_button" ><b class="" style="font-weight:600">Sepete Ekle</b></button>
+                    </div>
           </div>
         </div><!--/product_item--><!--/product-->
       </div>
     </section>
-    
     
 </body></html>
