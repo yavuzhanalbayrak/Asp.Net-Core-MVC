@@ -2,7 +2,7 @@
 using Lezita2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
-
+using Lezita2.Models.ViewModels;
 
 namespace Lezita2.Controllers
 {

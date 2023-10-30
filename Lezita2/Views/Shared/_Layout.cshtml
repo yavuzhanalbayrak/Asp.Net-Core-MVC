@@ -64,21 +64,24 @@
                         </li>
                         <li class="u-nav-item">
                             <div class="dropdown">
-                                @if(false){
+                                @if(true){
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Yavuz
                                     </button>
-                                    <ul class="dropdown-menu" style="font-size:15px">
-                                        <li><a class="dropdown-item" href="#">Sepetim</a></li>
-                                        <li><a class="dropdown-item" href="#">Profil</a></li>
-                                        <li><a class="dropdown-item" href="#">Çıkış</a></li>
+                                    <ul class="dropdown-menu " style="font-size:11px">
+                                        <li><a class="dropdown-item" href="#"><b>Profilim</b></a></li>
+                                        <li><a class="dropdown-item" href="#"><b>Sepetim</b></a></li>
+                                        <hr />
+                                        <li><a class="dropdown-item" href="#"><b>Beğendiklerim</b></a></li>
+                                        <hr />
+                                        <li><a class="dropdown-item" href="#"><strong>Çıkış</strong></a></li>
                                     </ul>
                                 }
                                 else
                                 {
                                     <a asp-controller="Login" asp-action="Index"> 
                                         <div class="btn btn-secondary" type="button">
-                                            Login
+                                            Giriş Yap
                                         </div>
                                     </a>
                                 }
