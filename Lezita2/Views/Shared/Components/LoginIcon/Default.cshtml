@@ -1,0 +1,26 @@
+﻿@if (ViewBag.UserName is not null)
+{
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        @ViewBag.UserName
+    </button>
+    <ul class="dropdown-menu " style="font-size:11px">
+        <li><a class="dropdown-item" href="#"><b>Profilim</b></a></li>
+        <li><a class="dropdown-item" href="#"><b>Sepetim</b></a></li>
+        <hr />
+        <li><a class="dropdown-item" href="#"><b>Beğendiklerim</b></a></li>
+        <hr />
+        <li>
+            <form asp-action="Logout" asp-controller="Login" method="post">
+                <button class="dropdown-item"><strong>Çıkış</strong></button>
+            </form>
+        </li>
+    </ul>
+}
+else
+{
+    <a asp-controller="Login" asp-action="Index">
+        <div class="btn btn-secondary" type="button">
+            Giriş Yap
+        </div>
+    </a>
+}
