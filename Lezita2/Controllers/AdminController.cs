@@ -1,8 +1,7 @@
 ﻿using Lezita2.Context;
 using Lezita2.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
 using Lezita2.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lezita2.Controllers
 {
@@ -10,21 +9,21 @@ namespace Lezita2.Controllers
     {
         LezitaDbContext _context = new LezitaDbContext();
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public AdminController(IWebHostEnvironment hostingEnvironment) 
+        public AdminController(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
-        private void DeleteImage(string imagePath,string bg_imagePath)
+        private void DeleteImage(string imagePath, string bg_imagePath)
         {
             // Eğer product.Image, tam bir yol değilse, uygulamanızın wwwroot klasörüyle birleştirin.(dosya "/" ile başlamamalı. )
             var photoPath = Path.Combine(_hostingEnvironment.WebRootPath, imagePath);
             var bgPhotoPath = Path.Combine(_hostingEnvironment.WebRootPath, bg_imagePath);
             // Dosyanın var olup olmadığını kontrol edin ve silin
             if (System.IO.File.Exists(photoPath))
-                System.IO.File.Delete(photoPath); 
+                System.IO.File.Delete(photoPath);
             if (System.IO.File.Exists(bgPhotoPath))
                 System.IO.File.Delete(bgPhotoPath);
-            
+
         }
 
         public IActionResult Index()
@@ -60,7 +59,7 @@ namespace Lezita2.Controllers
             product.Quantity = formProduct.Quantity;
             product.Description = formProduct.Description;
             product.CategoryId = formProduct.CategoryId;
-            formProduct.AddImageAsync(product);
+            await formProduct.AddImageAsync(product);
 
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -72,8 +71,8 @@ namespace Lezita2.Controllers
             var product = _context.Products.FirstOrDefault(c => c.Id == id);
             if (product is not null)
             {
-                if(product.Image is not null)
-                    DeleteImage(product.Image.TrimStart('/'),"");
+                if (product.Image is not null)
+                    DeleteImage(product.Image.TrimStart('/'), "");
                 //Db silme işlemi
                 _context.Products.Remove(product);
                 _context.SaveChanges();
@@ -93,7 +92,7 @@ namespace Lezita2.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                Quantity=product.Quantity
+                Quantity = product.Quantity
 
 
             };
@@ -114,8 +113,8 @@ namespace Lezita2.Controllers
             product.Quantity = formProduct.Quantity;
             product.Description = formProduct.Description;
             product.CategoryId = formProduct.CategoryId;
-            formProduct.AddImageAsync(product);
-            DeleteImage(TempData["OldProductImage"].ToString().TrimStart('/'),"");
+            await formProduct.AddImageAsync(product);
+            DeleteImage(TempData["OldProductImage"].ToString().TrimStart('/'), "");
             _context.SaveChanges();
             return RedirectToAction("GetProducts");
         }
@@ -139,7 +138,7 @@ namespace Lezita2.Controllers
             }
             Category category = new();
             category.Name = formCategory.Name;
-            formCategory.AddImageAsync(category);
+            await formCategory.AddImageAsync(category);
             _context.Categories.Add(category);
             _context.SaveChanges();
             return RedirectToAction("GetCategories");
@@ -155,12 +154,12 @@ namespace Lezita2.Controllers
                 {
                     foreach (var product in products)
                     {
-                        DeleteImage(product.Image.TrimStart('/'),"");
+                        DeleteImage(product.Image.TrimStart('/'), "");
                         _context.Products.Remove(product);
                     }
                 }
                 if (category.Image is not null)
-                    DeleteImage(category.Image.TrimStart('/'),category.BackGroundImage.TrimStart('/'));
+                    DeleteImage(category.Image.TrimStart('/'), category.BackGroundImage.TrimStart('/'));
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }
@@ -190,7 +189,7 @@ namespace Lezita2.Controllers
             }
             Category category = _context.Categories.Find(formCategory.Id);
             category.Name = formCategory.Name;
-            formCategory.AddImageAsync(category);
+            await formCategory.AddImageAsync(category);
             DeleteImage(TempData["OldCategoryImage"].ToString().TrimStart('/'), TempData["OldCategoryBgImage"].ToString().TrimStart('/'));
             _context.SaveChanges();
             return RedirectToAction("GetCategories");
