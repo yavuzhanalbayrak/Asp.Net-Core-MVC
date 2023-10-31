@@ -26,6 +26,7 @@
             <tr class="text-center">
                 <th scope="col">#</th>
                 <th scope="col">KATEGORİ ID</th>
+                <th scope="col">KATEGORİ RESMİ</th>
                 <th scope="col">KATEGORİ ADI</th>
                 <th scope="col"></th>
             </tr>
@@ -40,14 +41,18 @@
                 <tr class="text-center">
                     <th scope="row">@count</th>
                     <td>@category.Id</td>
+                    <td><img src="@category.Image" height="30"/></td>
                     <td>@category.Name</td>
-                    <td class="row">
-                        <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id method="get">
-                            <button class="btn btn-success">Güncelle</button>
-                        </form>
-                        <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id method="post">
-                            <button class="btn btn-danger">Sil</button>
-                        </form>
+                    <td>
+                        <div class="row">
+                            <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateCategories" asp-route-id=@category.Id method="get">
+                                <button class="btn btn-success">Güncelle</button>
+                            </form>
+                            <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteCategories" asp-route-id=@category.Id method="post">
+                                <button class="btn btn-danger">Sil</button>
+                            </form>
+                        </div>
+                        
                     </td>
                 </tr>
 

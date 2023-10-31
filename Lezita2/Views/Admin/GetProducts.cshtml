@@ -26,7 +26,10 @@
                 <tr class="text-center">
                     <th scope="col">#</th>
                     <th scope="col">ÜRÜN ID</th>
+                    <th scope="col">ÜRÜN RESMİ</th>
                     <th scope="col">ÜRÜN ADI</th>
+                    <th scope="col">ÜRÜN STOĞU</th>
+                    <th scope="col">ÜRÜN DEĞERİ</th>
                     <th scope="col">KATEGORİ</th>
                     <th scope="col"></th>
                 </tr>
@@ -47,15 +50,21 @@
                         <tr class="text-center">
                             <th scope="row">@count</th>
                             <td>@product.Id</td>
+                            <td><img src="@product.Image" height="30" /></td>
                             <td>@product.Name</td>
+                            <td>@product.Quantity</td>
+                            <td>$@product.Price</td>
                             <td>@categoryName</td>
-                            <td class="row">
-                                <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateProducts" asp-route-id=@product.Id method="get">
-                                    <button class="btn btn-success">Güncelle</button>
-                                </form>
-                                <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteProducts" asp-route-id=@product.Id method="post">
-                                    <button class="btn btn-danger">Sil</button>
-                                </form>
+                            <td >
+                                <div class="row">
+                                    <form class="col-6 text-end" asp-controller="Admin" asp-action="UpdateProducts" asp-route-id=@product.Id method="get">
+                                        <button class="btn btn-success">Güncelle</button>
+                                    </form>
+                                    <form class="col-6 text-start" asp-controller="Admin" asp-action="DeleteProducts" asp-route-id=@product.Id method="post">
+                                        <button class="btn btn-danger">Sil</button>
+                                    </form>
+                                </div>
+                                
                             </td>
                         </tr>
 

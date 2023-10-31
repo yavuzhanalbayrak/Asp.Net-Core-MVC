@@ -46,7 +46,7 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddProducts(AddProductImage formProduct)
+        public async Task<IActionResult> AddProducts(ProductCreateVM formProduct)
         {
             if (!ModelState.IsValid)
             {
@@ -54,6 +54,12 @@ namespace Lezita2.Controllers
                 return View(formProduct);
             }
             Product product = new();
+            //Nesneye değerler atandı.
+            product.Name = formProduct.Name;
+            product.Price = formProduct.Price;
+            product.Quantity = formProduct.Quantity;
+            product.Description = formProduct.Description;
+            product.CategoryId = formProduct.CategoryId;
             formProduct.AddImageAsync(product);
 
             _context.Products.Add(product);
@@ -66,7 +72,8 @@ namespace Lezita2.Controllers
             var product = _context.Products.FirstOrDefault(c => c.Id == id);
             if (product is not null)
             {
-                DeleteImage(product.Image.TrimStart('/'),"");
+                if(product.Image is not null)
+                    DeleteImage(product.Image.TrimStart('/'),"");
                 //Db silme işlemi
                 _context.Products.Remove(product);
                 _context.SaveChanges();
@@ -79,19 +86,22 @@ namespace Lezita2.Controllers
         {
             ViewBag.Categories = _context.Categories.ToList();
             var product = _context.Products.Find(id);
-            AddProductImage addProductImage = new()
+            ProductUpdateVM formProduct = new()
             {
                 Id = product.Id,
                 CategoryId = product.CategoryId,
                 Name = product.Name,
                 Description = product.Description,
+                Price = product.Price,
+                Quantity=product.Quantity
+
 
             };
             TempData["OldProductImage"] = product.Image;
-            return View(addProductImage);
+            return View(formProduct);
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateProductsAsync(AddProductImage formProduct)
+        public async Task<IActionResult> UpdateProductsAsync(ProductUpdateVM formProduct)
         {
             if (!ModelState.IsValid)
             {
@@ -99,6 +109,11 @@ namespace Lezita2.Controllers
                 return View(formProduct);
             }
             Product product = _context.Products.Find(formProduct.Id);
+            product.Name = formProduct.Name;
+            product.Price = formProduct.Price;
+            product.Quantity = formProduct.Quantity;
+            product.Description = formProduct.Description;
+            product.CategoryId = formProduct.CategoryId;
             formProduct.AddImageAsync(product);
             DeleteImage(TempData["OldProductImage"].ToString().TrimStart('/'),"");
             _context.SaveChanges();
@@ -116,13 +131,14 @@ namespace Lezita2.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddCategories(AddCategoryImage formCategory)
+        public async Task<IActionResult> AddCategories(CategoryCreateVM formCategory)
         {
             if (!ModelState.IsValid)
             {
                 return View(formCategory);
             }
             Category category = new();
+            category.Name = formCategory.Name;
             formCategory.AddImageAsync(category);
             _context.Categories.Add(category);
             _context.SaveChanges();
@@ -143,7 +159,8 @@ namespace Lezita2.Controllers
                         _context.Products.Remove(product);
                     }
                 }
-                DeleteImage(category.Image.TrimStart('/'),category.BackGroundImage.TrimStart('/'));
+                if (category.Image is not null)
+                    DeleteImage(category.Image.TrimStart('/'),category.BackGroundImage.TrimStart('/'));
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }
@@ -154,7 +171,7 @@ namespace Lezita2.Controllers
         public IActionResult UpdateCategories(int id)
         {
             var category = _context.Categories.Find(id);
-            AddCategoryImage addCategoryImage = new()
+            CategoryUpdateVM addCategoryImage = new()
             {
                 Id = category.Id,
                 Name = category.Name,
@@ -164,7 +181,7 @@ namespace Lezita2.Controllers
             TempData["OldCategoryBgImage"] = category.BackGroundImage;
             return View(addCategoryImage);
         }
-        public async Task<IActionResult> UpdateCategoriesAsync(AddCategoryImage formCategory)
+        public async Task<IActionResult> UpdateCategoriesAsync(CategoryUpdateVM formCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -172,6 +189,7 @@ namespace Lezita2.Controllers
                 return View(formCategory);
             }
             Category category = _context.Categories.Find(formCategory.Id);
+            category.Name = formCategory.Name;
             formCategory.AddImageAsync(category);
             DeleteImage(TempData["OldCategoryImage"].ToString().TrimStart('/'), TempData["OldCategoryBgImage"].ToString().TrimStart('/'));
             _context.SaveChanges();

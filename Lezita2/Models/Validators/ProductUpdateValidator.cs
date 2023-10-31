@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using Lezita2.Models.ViewModels;
 
 namespace Lezita2.Models.Validators
 {
-    public class ProductValidation : AbstractValidator<AddProductImage>
+    public class ProductUpdateValidator : AbstractValidator<ProductUpdateVM>
     {
-        public ProductValidation()
+        public ProductUpdateValidator()
         {
             RuleFor(product => product.Name).NotEmpty().WithMessage("Ürün ismi giriniz.");
             RuleFor(customer => customer.Image).NotEmpty().WithMessage("Ürün resmi zorunludur.");
