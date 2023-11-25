@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<<< HEAD:eticaret.sln
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eticaret", "eticaret\eticaret.csproj", "{D0706518-E539-45B5-83D8-30B522AAC068}"
+========
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "e-ticaret", "Lezita2\e-ticaret.csproj", "{D0706518-E539-45B5-83D8-30B522AAC068}"
+>>>>>>>> d6713095008ca514816535fbbfa37e16a988e31f:e-ticaret.sln
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
