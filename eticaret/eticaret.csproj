@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\CategoryImages\.gitkeep\**" />
+    <Compile Remove="wwwroot\ProductImages\.gitkeep\**" />
+    <Content Remove="wwwroot\CategoryImages\.gitkeep\**" />
+    <Content Remove="wwwroot\ProductImages\.gitkeep\**" />
+    <EmbeddedResource Remove="wwwroot\CategoryImages\.gitkeep\**" />
+    <EmbeddedResource Remove="wwwroot\ProductImages\.gitkeep\**" />
+    <None Remove="wwwroot\CategoryImages\.gitkeep\**" />
+    <None Remove="wwwroot\ProductImages\.gitkeep\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
@@ -14,11 +25,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\CategoryImages\.gitkeep\" />
-    <Folder Include="wwwroot\ProductImages\.gitkeep\" />
   </ItemGroup>
 
 </Project>
