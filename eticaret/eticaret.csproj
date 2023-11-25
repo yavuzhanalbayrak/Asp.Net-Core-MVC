@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\CategoryImages\" />
-    <Folder Include="wwwroot\ProductImages\" />
+    <Folder Include="wwwroot\CategoryImages\.gitkeep\" />
+    <Folder Include="wwwroot\ProductImages\.gitkeep\" />
   </ItemGroup>
 
 </Project>
